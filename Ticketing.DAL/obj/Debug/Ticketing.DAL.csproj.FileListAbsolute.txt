@@ -1,0 +1,11 @@
+C:\Users\Halit\source\repos\Ticketing\Ticketing.DAL\bin\Debug\Ticketing.DAL.dll.config
+C:\Users\Halit\source\repos\Ticketing\Ticketing.DAL\bin\Debug\Ticketing.DAL.dll
+C:\Users\Halit\source\repos\Ticketing\Ticketing.DAL\bin\Debug\Ticketing.DAL.pdb
+C:\Users\Halit\source\repos\Ticketing\Ticketing.DAL\bin\Debug\EntityFramework.dll
+C:\Users\Halit\source\repos\Ticketing\Ticketing.DAL\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\Halit\source\repos\Ticketing\Ticketing.DAL\bin\Debug\EntityFramework.xml
+C:\Users\Halit\source\repos\Ticketing\Ticketing.DAL\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\Halit\source\repos\Ticketing\Ticketing.DAL\obj\Debug\Ticketing.DAL.csproj.CoreCompileInputs.cache
+C:\Users\Halit\source\repos\Ticketing\Ticketing.DAL\obj\Debug\Ticketing.DAL.dll
+C:\Users\Halit\source\repos\Ticketing\Ticketing.DAL\obj\Debug\Ticketing.DAL.pdb
+C:\Users\Halit\source\repos\Ticketing\Ticketing.DAL\obj\Debug\Ticketing.DAL.csprojResolveAssemblyReference.cache

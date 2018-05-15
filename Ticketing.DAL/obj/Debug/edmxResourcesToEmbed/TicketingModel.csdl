@@ -1,0 +1,91 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="TicketingAPIModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Customer">
+    <Key>
+      <PropertyRef Name="customerID" />
+    </Key>
+    <Property Name="customerID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="customerName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="customerSurname" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="customerCompanyName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="customerCompanyAdress" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="customerCompanyPhone" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="customerPhone" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="isBusiness" Type="Boolean" />
+    <NavigationProperty Name="Ticket" Relationship="Self.FK_Ticket_Customer" FromRole="Customer" ToRole="Ticket" />
+  </EntityType>
+  <EntityType Name="Status">
+    <Key>
+      <PropertyRef Name="statusID" />
+    </Key>
+    <Property Name="statusID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ticketID" Type="Int32" Nullable="false" />
+    <Property Name="statusName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="statusDate" Type="DateTime" Precision="3" Nullable="false" />
+    <Property Name="assignedTo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Ticket" Relationship="Self.FK_Status_Ticket" FromRole="Status" ToRole="Ticket" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="Ticket">
+    <Key>
+      <PropertyRef Name="ticketID" />
+    </Key>
+    <Property Name="ticketID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="customerID" Type="Int32" Nullable="false" />
+    <Property Name="statusID" Type="Int32" Nullable="false" />
+    <Property Name="tripFrom" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="tripTo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="asDirected" Type="Int16" />
+    <Property Name="pickTime" Type="DateTime" Precision="3" />
+    <Property Name="payment" Type="Boolean" />
+    <NavigationProperty Name="Customer" Relationship="Self.FK_Ticket_Customer" FromRole="Ticket" ToRole="Customer" />
+    <NavigationProperty Name="Status" Relationship="Self.FK_Status_Ticket" FromRole="Ticket" ToRole="Status" />
+  </EntityType>
+  <Association Name="FK_Ticket_Customer">
+    <End Role="Customer" Type="Self.Customer" Multiplicity="1" />
+    <End Role="Ticket" Type="Self.Ticket" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Customer">
+        <PropertyRef Name="customerID" />
+      </Principal>
+      <Dependent Role="Ticket">
+        <PropertyRef Name="customerID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Status_Ticket">
+    <End Role="Ticket" Type="Self.Ticket" Multiplicity="1" />
+    <End Role="Status" Type="Self.Status" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Ticket">
+        <PropertyRef Name="ticketID" />
+      </Principal>
+      <Dependent Role="Status">
+        <PropertyRef Name="ticketID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="TicketingAPIEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Customer" EntityType="Self.Customer" />
+    <EntitySet Name="Status" EntityType="Self.Status" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+    <EntitySet Name="Ticket" EntityType="Self.Ticket" />
+    <AssociationSet Name="FK_Ticket_Customer" Association="Self.FK_Ticket_Customer">
+      <End Role="Customer" EntitySet="Customer" />
+      <End Role="Ticket" EntitySet="Ticket" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Status_Ticket" Association="Self.FK_Status_Ticket">
+      <End Role="Ticket" EntitySet="Ticket" />
+      <End Role="Status" EntitySet="Status" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
